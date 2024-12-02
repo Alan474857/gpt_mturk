@@ -1,0 +1,238 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Conversation Quality Measurement</title>
+    
+    <!-- Bootstrap - 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"></script>
+    <script src="https://alan474857.github.io/gpt_mturk/notify.js"></script>
+
+    <!-- Custom Code -->
+    <link rel="stylesheet" type="text/css" href="https://alan474857.github.io/gpt_mturk/conversation_evaluation.css">
+    <script type="text/javascript" src="https://alan474857.github.io/gpt_mturk/conversation_evaluation.js"></script>
+    <script type="text/javascript" src="https://alan474857.github.io/gpt_mturk/mturk.js"></script>
+    <script type="text/javascript" src="https://alan474857.github.io/gpt_mturk/lock.js"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+	<h1 style="text-align:center;">Evaluating the Quality of the Conversation</h1>
+
+	<div id="instruction">
+		<h3>Instruction</h3>
+        <div>
+            Below, you will see a conversation between <span class="bold">a user</span> and <span class="bold">a non-human Artificial Intelligence (AI) assistant</span>. 
+            The user is asking the assistant for help with a question. 
+            <div style="display:inline-block; height: 12px; width:100%;"> </div>
+            <!-- The user's question to the assistant is: <span class="bold" style="text-decoration: underline;">"provide the 16 most popular tags for instagram regarding the subject of art, nude drawings, life drawing ,charcoal and pastels"</span> -->
+        </div>
+        <br>
+		<ul>
+            <li>
+                Please read the conversation and rate its quality in terms of <span class="bold">Complexity, Connectivity, Dynamics, Intransparency, Multiple Goals, Achievability, Rephrasable, Persona, Reach-out, Conversibility, and Helpfulness</span>.
+                <ul>
+                    <li><span class="bold">Complexity</span>: The question involves numerous variables that could impact the outcome. </li>
+                    <li><span class="bold">Connectivity</span>: The relationships between the variables in the question are not straightforward, making it challenging to understand how they influence each other. </li>
+                    <li><span class="bold">Dynamics</span>: The question evolves over time, and the answer may change as progress is made. </li>
+                    <li><span class="bold">Intransparency</span>: There are multiple, potentially conflicting goals associated with the question, requiring a balance of priorities. </li>
+                    <li><span class="bold">Multiple Goals</span>: Not all information needed to answer the question is readily available or clearly understood. </li>
+                    <li><span class="bold">Achievability</span>: As the request is currently phrased, it would not be physically possible for an average person (non-expert in the specific field) to accomplish what the user requested within 20 minutes with decent quality. </li>
+                    <li><span class="bold">Rephrasable</span>: The request is achievable for an average person (non-expert in the specific field), but the way it is currently phrased makes it challenging for a human to respond effectively. Some level of rephrasing is needed. </li>
+                    <li><span class="bold">Persona</span>: The question requires the assistant to adopt or portray a specific type of persona rather than replying as a generalized personality. </li>
+                    <li><span class="bold">Reach-Out</span>: If you have this question, you would reach out to other people, such as friends, family members, colleagues, or experts, to get help. As compared to finding the answers by looking up information by myself with a computer or a smartphone. </li>
+                    <li><span class="bold">Conversability</span>: If you have this question, you would prefer to have a conversation regarding the details of the question and have a further discussion with the answerer. As compared to asking the question as is and waiting for the answers. </li>
+                    <li><span class="bold">Helpfulness</span>: At the end of the conversation, the assistant provided a helpful solution to the question initially asked. </li>
+                </ul>
+            </li>
+            <li>
+                Please focus on both the <span class="user-conv">User</span> and <span class="assistant-conv">Assistant</span> turns. 
+                <!-- (To present the full context, we show the assistant's responses, too.  -->
+                <span style="color: red; font-weight: 900;">We would like you to assess the quality of the entire conversation</span>.
+            </li>
+            <li>Please read the conversation carefully. You will be able to submit the evaluation after <span style="color:red; font-weight:900;">70 seconds</span>.</li>
+		</ul>
+	</div>
+
+
+	<div id="conversation">
+		<h3>Conversation</h3>	
+        <div style="margin-bottom: 20px;">
+            This is the conversation between <span class="bold">a user</span> and <span class="bold">a non-human Artificial Intelligence(AI) assistant</span> on collecting information about 
+            <span class="bold" style="text-decoration: underline;">"provide the 16 most popular tags for instagram regarding the subject of art, nude drawings, life drawing ,charcoal and pastels"</span>
+            Please read the entire conversation carefully and focus on both the <span class="user-conv">User</span> and <span class="assistant-conv">Assistant</span> turns. 
+        </div>
+<div class="conversation_block user"><pre>provide the 16 most popular tags for instagram regarding the subject of art, nude drawings, life drawing ,charcoal and pastels</pre></div>
+<div class="conversation_block assistant"><pre>The 16 most popular tags for Instagram regarding the subject of art, nude drawings, life drawing, charcoal, and pastels are:
+
+1. art
+2. nude
+3. drawing
+4. life drawing
+5. charcoal
+6. pastel
+7. sketch
+8. pencil
+9. ink
+10. oil
+11. acrylic
+12. watercolor
+13. mixed media
+14. portrait
+15. figure drawing
+16. anatomy.</pre></div>
+	</div>
+
+
+	<div id="evaluation">
+		<h3>Rating</h3>
+		<div>
+            Rate the conversation by selecting how much you agree with the statement about the conversation.
+		</div>
+		<div>
+            <div class="radio_button" name="complexity">
+            	<li class="radio_question">
+                    The question invloves <span class="keyword">numerous variables</span> that could impact the outcome.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+        	</div>
+
+            <div class="radio_button" name="connectivity">
+            	<li class="radio_question">
+                    The relationships between the variables in the questions are <span class="keyword">not straight forward</span>, making it challenging to understand how they influence each other.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+            </div>
+
+            <div class="radio_button" name="dynamics">
+            	<li class="radio_question">
+                    The question <span class="keyword">evolves over time</span>, and the answer may change as progress is made.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+            </div>
+
+            <div class="radio_button" name="intransparency">
+            	<li class="radio_question">
+                    There are <span class="keyword">multiple, potentially conflicting goals</span> associated with the question, requiring a balance of priorities.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+            </div>
+
+            <div class="radio_button" name="multiple_goals">
+            	<li class="radio_question">
+                    <span class="keyword">Not</span> all information needed to answer the question is <span class="keyword">readily available or clearly understood</span>.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+            </div>
+
+            <div class="radio_button" name="achievability">
+            	<li class="radio_question">
+                    It would be <span class="keyword">physically impossible for an average person (non-expert in the specific field) to accomplish</span> what the user requested within 20 minutes with decent quality.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+            </div>
+
+            <div class="radio_button" name="rephrasable">
+            	<li class="radio_question">
+                    The request is <span class="keyword">achievable for an average person (non-expert in the specific field)</span>, but the way it is currently phrased makes it challenging for a human to respond effectively. Some level of <span class="keyword">rephrasing is needed</span>.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+            </div>
+
+            <div class="radio_button" name="persona">
+            	<li class="radio_question">
+                    The question requires the assistant to adopt or portray a <span class="keyword">specific type of persona</span> rather than replying as a generalized personality.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+            </div>
+
+            <div class="radio_button" name="reach_out">
+            	<li class="radio_question">
+                    If you have this question, you would <span class="keyword">reach out to other people</span>, such as friends, family members, colleagues, or experts, to get help. As compared to finding the answers by looking up information by myself with a computer or a smartphone.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+            </div>
+
+            <div class="radio_button" name="conversability">
+            	<li class="radio_question">
+                    If you have this question, you would <span class="keyword">prefer to have a conversation regarding the details</span> of the question and have a further discussion with the answerer. As compared to asking the question as is and waiting for the answers.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+            </div>
+
+            <div class="radio_button" name="helpfulness">
+            	<li class="radio_question">
+                    At the end of the conversation, the assistant <span class="keyword">provided a helpful solution</span> to the question initially asked.
+                </li>
+                <div class="radio_answer" value="0">Strongly Disagree</div>
+                <div class="radio_answer" value="1">Disagree</div>
+                <div class="radio_answer" value="2">Neutral</div>
+                <div class="radio_answer" value="3">Agree</div>
+                <div class="radio_answer" value="4">Strongly Agree</div>
+            </div>   
+		</div>
+
+        <form id="mturk_form" name="mturk_form">
+            <input name="id" type="hidden" value="818f952160844c31a77b581ad7fcc3cc">
+            <input name="answer" type="hidden">
+        </form>
+
+        <button class="btn btn-block btn-outline-primary btn-sm" id="submit_btn" disabled> Submit </button>
+
+	</div>
+
+</div>
+
+</body>
+</html>
